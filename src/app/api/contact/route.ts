@@ -73,11 +73,12 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ ok: true });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error("/api/contact error", err);
-    return NextResponse.json(
-      { error: "Failed to send your message. Please try again later." },
-      { status: 500 }
-    );
+    const msg =
+      err instanceof Error
+        ? err.message
+        : "Failed to send your message. Please try again later.";
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
