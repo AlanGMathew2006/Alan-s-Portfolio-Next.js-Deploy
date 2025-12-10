@@ -4,6 +4,7 @@ import { getProjects } from "@/database/projectSchema";
 import Button from "@/components/ui/Button";
 import CommentSection from "@/components/ui/CommentSection";
 import { getCommentsByBlogSlug } from "@/database/commentSchema";
+import Image from "next/image";
 
 export default async function Portfolio() {
   // Fetch projects from database
@@ -36,10 +37,13 @@ export default async function Portfolio() {
           <div className={styles.projectsGrid}>
             {projects.map((project, index) => (
               <div key={index} className={styles.projectCard}>
-                <img
+                <Image
                   src={project.image}
                   alt={project.imageAlt}
                   className={styles.projectImage}
+                  width={1200}
+                  height={800}
+                  priority={index === 0}
                 />
                 <h2 className={styles.projectTitle}>{project.title}</h2>
                 <p className={styles.projectDate}>{project.date}</p>

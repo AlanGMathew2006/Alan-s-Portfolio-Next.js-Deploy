@@ -46,8 +46,12 @@ export default function ContactForm() {
       setEmail("");
       setSubject("");
       setMessage("");
-    } catch (err: any) {
-      setError(err.message || "Something went wrong. Please try again.");
+    } catch (err: unknown) {
+      const msg =
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again.";
+      setError(msg);
     } finally {
       setLoading(false);
     }

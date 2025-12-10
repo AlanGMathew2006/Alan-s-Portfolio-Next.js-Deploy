@@ -5,6 +5,7 @@ import { getCommentsByBlogSlug } from "@/database/commentSchema";
 import styles from "./page.module.css";
 import Button from "@/components/ui/Button";
 import CommentSection from "@/components/ui/CommentSection";
+import Image from "next/image";
 
 // Force dynamic rendering to always fetch fresh data including comments
 export const dynamic = "force-dynamic";
@@ -41,10 +42,13 @@ export default async function BlogPost({ params }: BlogPostProps) {
             <header className={styles.blogHeader}>
               <h1 className={styles.blogTitle}>{blog.title}</h1>
               <p className={styles.blogDate}>{blog.date}</p>
-              <img
+              <Image
                 src={blog.image}
                 alt={blog.imageAlt}
                 className={styles.blogHeroImage}
+                width={800}
+                height={400}
+                priority
               />
             </header>
 

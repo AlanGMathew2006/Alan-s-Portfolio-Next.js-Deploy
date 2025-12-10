@@ -10,22 +10,7 @@ function parseCommentTime(time: Date | string) {
   return date.toLocaleDateString();
 }
 
-// Generate a random color for each user
-function getUserColor(user: string) {
-  const colors = [
-    "#00d4aa",
-    "#ff6b6b",
-    "#4ecdc4",
-    "#45b7d1",
-    "#f39c12",
-    "#9b59b6",
-  ];
-  let hash = 0;
-  for (let i = 0; i < user.length; i++) {
-    hash = user.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  return colors[Math.abs(hash) % colors.length];
-}
+// Removed unused helper to satisfy ESLint no-unused-vars
 
 function Comment({ comment }: CommentProps) {
   return (

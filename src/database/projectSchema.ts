@@ -34,7 +34,7 @@ export async function getProjects(): Promise<Project[] | null> {
   try {
     const projects = await Project.find().lean();
     return projects as unknown as Project[];
-  } catch (err) {
+  } catch {
     return null;
   }
 }

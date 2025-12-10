@@ -31,7 +31,7 @@ export async function getBlogs(): Promise<Blog[] | null> {
   try {
     const blogs = await Blog.find().lean();
     return blogs as unknown as Blog[];
-  } catch (err) {
+  } catch {
     return null;
   }
 }
@@ -42,7 +42,7 @@ export async function getBlogBySlug(slug: string): Promise<Blog | null> {
   try {
     const blog = await Blog.findOne({ slug: slug }).lean();
     return blog as unknown as Blog;
-  } catch (err) {
+  } catch {
     return null;
   }
 }
