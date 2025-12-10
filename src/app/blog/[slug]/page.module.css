@@ -1,0 +1,137 @@
+.blogPostContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* Two Column Layout */
+.twoColumnLayout {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Left Column - Comments */
+.leftColumn {
+  position: sticky;
+  top: 20px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+}
+
+/* Right Column - Blog Content */
+.rightColumn {
+  min-width: 0; /* Prevent overflow in flex/grid */
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .twoColumnLayout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .leftColumn {
+    position: static;
+    max-height: none;
+    order: 2; /* Comments go after blog content on mobile */
+  }
+
+  .rightColumn {
+    order: 1; /* Blog content goes first on mobile */
+  }
+}
+
+.blogPost {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.blogHeader {
+  padding: 2rem 2rem 0;
+  text-align: center;
+}
+
+.blogTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #4bb7a0 0%, #8414b1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.blogDate {
+  color: #666;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.blogHeroImage {
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 0 auto 2rem auto;
+  display: block;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.blogContent {
+  padding: 0 2rem 2rem;
+  line-height: 1.8;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.blogContent h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 2rem 0 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid #f1f5f9;
+}
+
+.blogContent h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.blogContent p {
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+.blogContent ul {
+  margin: 1rem 0 1.5rem 1.5rem;
+  padding-left: 1rem;
+}
+
+.blogContent li {
+  margin-bottom: 0.5rem;
+  list-style-type: disc;
+}
+
+.blogContent li::marker {
+  color: #4bb7a0;
+}
+
+.blogFooter {
+  padding: 0 2rem 2rem;
+  border-top: 1px solid #e2e8f0;
+  margin-top: 2rem;
+  padding-top: 2rem;
+}

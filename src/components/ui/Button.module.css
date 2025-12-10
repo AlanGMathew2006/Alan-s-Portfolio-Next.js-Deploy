@@ -1,0 +1,26 @@
+.button {
+  display: inline-block;
+  width: 180px;
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #4bb7a0 0%, #8414b1 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  margin-top: 60px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(77, 184, 255, 0.15);
+  text-align: center;
+  outline: none;
+}
+
+.button a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(75, 183, 160, 0.3);
+}
