@@ -5,10 +5,21 @@ import { NextResponse } from "next/server";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+type ContactPayload = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
+
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-    const { name, email, subject, message } = body || {};
+    const body = (await request.json()) as unknown;
+    const maybe = body as Partial<ContactPayload> | null;
+    const name = typeof maybe?.name === "string" ? maybe!.name : "";
+    const email = typeof maybe?.email === "string" ? maybe!.email : "";
+    const subject = typeof maybe?.subject === "string" ? maybe!.subject : "";
+    const message = typeof maybe?.message === "string" ? maybe!.message : "";
 
     if (!name || !email || !subject || !message) {
       return NextResponse.json(

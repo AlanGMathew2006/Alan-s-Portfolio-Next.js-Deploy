@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import styles from "./page.module.css";
 import { getBlogs } from "@/database/blogSchema";
 import Button from "@/components/ui/Button";
@@ -25,10 +26,14 @@ export default async function Blog() {
             <div className={styles.blogContent}>
               <h2 className={styles.blogTitle}>{blog.title}</h2>
               <p className={styles.blogDate}>{blog.date}</p>
-              <img
+              <Image
                 src={blog.image}
                 alt={blog.imageAlt}
                 className={styles.blogImage}
+                width={800}
+                height={450}
+                sizes="(max-width: 800px) 100vw, 800px"
+                priority={false}
               />
               <p className={styles.blogDescription}>{blog.description}</p>
               <div className={styles.blogLinks}>
