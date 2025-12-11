@@ -43,6 +43,7 @@ export default async function Portfolio() {
                   className={styles.projectImage}
                   width={1200}
                   height={800}
+                  sizes="(max-width: 1200px) 100vw, 1200px"
                   priority={index === 0}
                 />
                 <h2 className={styles.projectTitle}>{project.title}</h2>
@@ -50,13 +51,18 @@ export default async function Portfolio() {
                 <p className={styles.projectDescription}>
                   {project.description}
                 </p>
-                <div className={styles.projectTechnologies}>
-                  {project.technologies.map((tech, index) => (
-                    <span key={index} className={styles.projectTechnology}>
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+                {Array.isArray(project.technologies) && (
+                  <div className={styles.projectTechnologies}>
+                    {project.technologies.map((tech, i) => (
+                      <span
+                        key={`${tech}-${i}`}
+                        className={styles.projectTechnology}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 <div className={styles.projectLinks}>
                   {project.githubUrl && (
                     <Button href={project.githubUrl}>GitHub</Button>
