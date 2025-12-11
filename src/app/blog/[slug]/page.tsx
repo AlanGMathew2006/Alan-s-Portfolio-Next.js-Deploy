@@ -42,14 +42,32 @@ export default async function BlogPost({ params }: BlogPostProps) {
             <header className={styles.blogHeader}>
               <h1 className={styles.blogTitle}>{blog.title}</h1>
               <p className={styles.blogDate}>{blog.date}</p>
-              <Image
-                src={blog.image}
-                alt={blog.imageAlt}
-                className={styles.blogHeroImage}
-                width={800}
-                height={400}
-                priority
-              />
+              {(() => {
+                const raw = blog?.image ?? "";
+                const alt = blog?.imageAlt ?? "Blog image";
+                const isRemote = /^https?:\/\//i.test(raw);
+                let src = raw.startsWith("/") ? raw : `/${raw}`;
+                if (!isRemote) {
+                  if (!src.startsWith("/images/")) {
+                    src = src.replace(/^\/public\//, "/");
+                    src = `/images/${src.replace(/^\//, "")}`;
+                  }
+                }
+                return raw ? (
+                  <Image
+                    src={src}
+                    alt={alt}
+                    className={styles.blogHeroImage}
+                    width={800}
+                    height={400}
+                    sizes="(max-width: 800px) 100vw, 800px"
+                    priority
+                    unoptimized={!isRemote}
+                  />
+                ) : (
+                  <div className={styles.blogHeroImage} aria-hidden="true" />
+                );
+              })()}
             </header>
 
             <div className={styles.blogContent}>
